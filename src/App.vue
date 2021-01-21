@@ -2,7 +2,7 @@
   <router-view />
 </template>
 
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
 body {
   margin: 0;
@@ -11,7 +11,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  /* background-color: #d9d9d9; */
+  background-color: #d9d9d9;
 }
 html {
   box-sizing: border-box;
@@ -30,6 +30,6 @@ html {
   color: #2c3e50;
 }
 *, ::after, ::before {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 </style>

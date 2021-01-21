@@ -1,42 +1,47 @@
 <template>
   <div class="container">
-    <h1>Το κοπή τη Πίτα </h1>
+    <h1 class="font-bold text-2xl">Το κοπή τη Πίτα </h1>
 
-    <img alt="RamaLogo" width="200" height="200" src="../assets/rama-logo.png" />
+    <img
+      alt="RamaLogo"
+      width="130"
+      height="130"
+      class="mx-auto my-10 logo"
+      style="border-radius: 100px;"
+      src="../assets/rama-logo.png"
+    />
 
-    <h2>Rama Camp 2021</h2>
+    <h2 class="font-bold text-xl">Rama Camp 2021</h2>
 
-    <form v-on:submit.prevent="submit">
+    <form v-on:submit.prevent="submit" class="mt-10">
      <input 
         type='text' 
-        placeholder='RamaCamper' 
+        placeholder='Por Rama' 
+        class="border-black"
         v-model='name'
       />
+      <button class="border-black ml-3" @click='submit'>&#43;</button>
     </form>
-    <br>
-    <button @click='submit'>Δώσε</button>
-    <br>
-    <br>
+
+    <button
+      v-if="allNames.length"
+      class="border-black block mx-auto my-6 text-xl font-bold"
+      @click='cutPie'>
+        Για πάμε να δούμε<br>τον υπερτυχερό!
+      </button>
     
-    <div class="rama-campers">
+    <div v-if="allNames.length" class="rama-campers">
       <ul>
         <li v-for="(name, index) in allNames" :key="index">
-          <span style="float: left">{{ allNames.length - index }}.</span> {{ name }}
+          <span style="float: left; color: #c7aa28;">{{ allNames.length - index }}.</span>
+          <span class="font-bold">{{ name }}</span>
         </li>
       </ul>
     </div>
-    <br>
-    <br>
-    <button @click='deleteFirst'>Σβήσιμο Τελευταίου</button>
-
-    <br>
-    <br>
-    <br>
-    <button @click='cutPie'>Για πάμε να δούμε<br>τον τυχερό</button>
-    <br>
-    <br>
-    <button @click='reset'>Καθαρισμός</button>
+    <button v-if="allNames.length" class="border-black block mx-auto mt-5 text-xs" @click='deleteFirst'>Σβήσιμο Τελευταίου</button>
   </div>
+  <img class="thai-bottom r" src="/thai-bottom-r.png" alt="thai-bottom-r">
+  <img class="thai-bottom l" src="/garuda.png" alt="thai-bottom-r">
 </template>
 
 <script>
@@ -51,10 +56,6 @@ import store from '../store'
 
       const name = ref('')
       const allNames = ref([])
-
-      const reset = () => {
-        allNames.value = [] // clears the allNames
-      }
 
       const deleteFirst = () => { // because array.unshift and not push
         allNames.value = allNames.value.filter((name, i) => i !== 0)
@@ -74,7 +75,6 @@ import store from '../store'
       
       return {
         submit,
-        reset,
         deleteFirst,
         cutPie,
         allNames,
@@ -106,6 +106,34 @@ import store from '../store'
     max-height: 200px;
     margin: auto;
     overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: black var(--gold);
   }
+  .rama-campers::-webkit-scrollbar {
+    width: 11px;
+  }
+  .rama-campers::-webkit-scrollbar-track {
+    background: var(--gold);
+  }
+  .rama-campers::-webkit-scrollbar-thumb {
+    background-color: black ;
+    border-radius: 6px;
+    border: 3px solid var(--gold);
+  }
+}
+img.thai-bottom {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  &.r{right: 0;}
+  &.l{left: 30px;}
+}
+
+@media screen and (min-width: 768px) {
+  img.logo {
+    width: 200px;
+    height: 200px;
+  }
+  img.thai-bottom { display: block; }
 }
 </style>

@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    --gold: #c7aa28;
+}
+
+.border-black {
+    border: 1px solid var(--gold);
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.border-black:hover {
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.disable {
+    pointer-events: none;
+    opacity: 0.5;
+}

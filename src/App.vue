@@ -4,6 +4,10 @@
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
+:root {
+  --bg-color: #d9d9d9;
+}
+
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
@@ -11,7 +15,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  background-color: #d9d9d9;
+  background-color: var(--bg-color);
 }
 html {
   box-sizing: border-box;

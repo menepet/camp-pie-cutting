@@ -6,7 +6,7 @@
       alt="RamaLogo"
       width="130"
       height="130"
-      class="mx-auto my-10 logo"
+      class="mx-auto my-5 md:my-10 logo"
       style="border-radius: 100px;"
       src="../assets/rama-logo.png"
     />
@@ -25,7 +25,7 @@
 
     <button
       v-if="allNames.length"
-      class="border-black block mx-auto my-6 text-xl font-bold"
+      class="border-black block mx-auto my-6 text-lg md:text-xl font-bold"
       @click='cutPie'>
         Για πάμε να δούμε<br>τον υπερτυχερό!
       </button>
@@ -52,6 +52,7 @@ import store from '../store'
   export default {
     name: 'FillParticipants',
     setup () {
+      console.log(process.env);
       const router = useRouter()
 
       const name = ref('')
@@ -72,7 +73,7 @@ import store from '../store'
           name.value = ''
         }
       }
-      
+
       return {
         submit,
         deleteFirst,
@@ -104,6 +105,10 @@ import store from '../store'
   .rama-campers {
     max-width: 300px;
     max-height: 200px;
+    position: relative;
+    z-index: 1;
+    background-color: var(--bg-color);
+    padding: 0 5px;
     margin: auto;
     overflow: auto;
     scrollbar-width: thin;

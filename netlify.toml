@@ -1,0 +1,45 @@
+# vue spa route redirections
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  # Define which paths this specific [[headers]] block will cover.
+  for = "/*"
+  [headers.values]
+    # Multi-value headers are expressed with multi-line strings.
+    cache-control = "public, max-age=30, must-revalidate"
+
+[[headers]]
+  for = "*.js" # js files should be set this way
+  [headers.values]
+    Cache-Control = "public, max-age=30"
+
+[[headers]]
+  for = "*.css" # css files too
+  [headers.values]
+    Cache-Control = "public, max-age=30"
+
+[[headers]]
+  for = "*.jpg" # css files too
+  [headers.values]
+    Cache-Control = "public, max-age=31536000" # max-value
+
+[[headers]]
+  for = "*.png" # css files too
+  [headers.values]
+    Cache-Control = "public, max-age=31536000" # max-value
+
+[[headers]]
+  for = "*.webp" # css files too
+  [headers.values]
+    Cache-Control = "public, max-age=31536000" # max-value
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "no-referrer"
+    X-Content-Type-Options = "nosniff"

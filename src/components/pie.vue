@@ -1,15 +1,16 @@
 <template>
   <div class="container-fluid">
-    <div class = "d-flex align-items-center justify-content-center">
-      <div class="circle-div d-flex align-items-center justify-content-center" id="outerCirlceId">
+    <div class = "flex items-center justify-center">
+      <div class="circle-div flex items-center justify-center" id="outerCirlceId">
         <div class="center-div" id="centerDivId"></div>
       </div>
     </div>
   </div>
-  <div v-if="winner" class="absolute p-20 winner">
+  <div v-if="winner" class="absolute p-10 md:p-20 w-10/12 md:w-7/12 winner">
+    <span class="absolute top-5 right-10 cursor-pointer text-lg" @click="winner=''">&#10005;</span>
     <h1 class="text-2xl font-bold mb-1">สวัสดีปีใหม่ 2021</h1>
     <h1 class="text-2xl font-bold mb-10">{{ winner }}</h1>
-    <img src="/thai-baht.png" height="400" width="400" alt="winner">
+    <img src="/thai-baht.png" class="m-auto" height="400" width="400" alt="winner">
   </div>
 </template>
 
@@ -19,7 +20,7 @@ import { useRouter } from 'vue-router'
 import store from '../store'
 
 export default {
-    setup(props) {
+    setup() {
         const router = useRouter()
 
         const participants = ref([])
@@ -32,9 +33,13 @@ export default {
           participants.value.push(name)
         }
 
-        luckyStrikeNumber.value = Math.floor(Math.random() * participants.value.length) + 1
+        const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+        const maxValue = participants.value.length
+
+        luckyStrikeNumber.value = randomIntFromInterval(2 , maxValue + 1)
 
         onMounted(() => {
+          // https://github.com/visheshmishra/circle_division
           var cordinateArr = [];
           var x0;
           var y0;
@@ -51,10 +56,10 @@ export default {
             centerObj.height = 1;
             // console.log("center x,y" + x0,y0);
 
-            for(var i = 0; i < participants.value.length; i++){ 
+            for(var i = 0; i < maxValue; i++){ 
               var cordObj = {}; 
-              var x = x0 + r * Math.cos(2 * Math.PI * i / participants.value.length); 
-              var y = y0 + r * Math.sin(2 * Math.PI * i / participants.value.length);
+              var x = x0 + r * Math.cos(2 * Math.PI * i / maxValue); 
+              var y = y0 + r * Math.sin(2 * Math.PI * i / maxValue);
               
               cordObj.left = x;
               cordObj.top = y;
@@ -106,12 +111,13 @@ export default {
 
           getCenter();
 
+          // Global Listener for cake pieces
           document.addEventListener('click', (e) => {
             if (e.target.getAttribute("data-index")) { // has one of the data attribute above
               e.target.classList.add("disable")
             }
 
-            if (parseInt(e.target.getAttribute("data-index")) - 2 === luckyStrikeNumber.value) {
+            if (parseInt(e.target.getAttribute("data-index")) === luckyStrikeNumber.value) {
               winner.value = e.target.getAttribute("data-name")
             }
           });
@@ -135,25 +141,18 @@ export default {
   width: 100%;
   background-color: #d9d9d9;
 }
-.align-items-center {
-  -ms-flex-align: center!important;
-  align-items: center!important;
-}
-.justify-content-center {
-  -ms-flex-pack: center!important;
-  justify-content: center!important;
-}
-.d-flex {
-  display: -ms-flexbox!important;
-  display: flex!important;
-}
 .winner {
   top: 10%;
-  left: 28%;
+  left: 13%;
   background: white;
-  border-radius: 250px;
+  border-radius: 50px;
   box-shadow: 15px 16px 40px -15px #0000009e;
   animation: winnerFade 1s ease-in-out forwards;
+}
+@screen md {
+  .winner {
+    left: 25%;
+  }
 }
 @keyframes winnerFade {
     0% {
@@ -180,10 +179,11 @@ export default {
   background: #7c473c;
   background-image: url('/sugar.png');
   background-position: center;
-  white-space: pre;
 }
 .circle-div::before {
-  content: 'Rama Camp\A 2021';
+  content: 'Rama Camp 2021';
+  width: 215px;
+  white-space: pre-wrap;
   font-size: 35px;
   font-weight: 800;
   text-align: center;
@@ -211,13 +211,16 @@ export default {
   color: #c8aa27;
 }
 
-@media screen and (min-width: 768px) {
+@screen md {
   .circle-div {
     width: 400px;
     height: 400px;
   }
   .circle-div .line::before {
     left: 5px;
+  }
+  .winner {
+    left: 28%;
   }
 }
 </style>

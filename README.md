@@ -1,6 +1,6 @@
 # camp-pie-cutting
 
-New years pie cutting with random lucky strike win
+New years pie cutting with random lucky strike win for [Rama Camp](https://rama-camp-pie.netlify.app/).
 
 ## Installation
 

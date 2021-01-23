@@ -1,9 +1,16 @@
 <template>
   <router-view />
+  <a
+    href="https://github.com/menepet/camp-pie-cutting"
+    target="_blank"
+    class="text-xsx absolute bottom-0 left-2"
+    style="opacity: 0.4"
+  >by Menepet</a>
 </template>
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
+
 :root {
   --bg-color: #d9d9d9;
 }

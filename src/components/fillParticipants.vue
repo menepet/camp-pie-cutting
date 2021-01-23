@@ -52,7 +52,6 @@ import store from '../store'
   export default {
     name: 'FillParticipants',
     setup () {
-      console.log(process.env);
       const router = useRouter()
 
       const name = ref('')

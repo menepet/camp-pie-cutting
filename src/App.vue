@@ -3,8 +3,7 @@
   <a
     href="https://github.com/menepet/camp-pie-cutting"
     target="_blank"
-    class="text-xsx absolute bottom-0 left-2"
-    style="opacity: 0.4"
+    class="text-xs absolute bottom-2 left-2"
   >by Menepet</a>
 </template>
 

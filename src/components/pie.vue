@@ -143,7 +143,7 @@ export default {
 }
 .winner {
   top: 10%;
-  left: 13%;
+  left: 9%;
   background: white;
   border-radius: 50px;
   box-shadow: 15px 16px 40px -15px #0000009e;

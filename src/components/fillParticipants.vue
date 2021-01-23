@@ -129,7 +129,7 @@ img.thai-bottom {
   display: none;
   position: absolute;
   bottom: 0;
-  &.r{right: 0;}
+  &.r{display: block; right: 0;}
   &.l{left: 30px;}
 }
 
